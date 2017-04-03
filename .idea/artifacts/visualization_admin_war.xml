@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="visualization-admin:war">
+    <output-path>$PROJECT_DIR$/visualization-admin/target</output-path>
+    <root id="archive" name="visualization-admin.war">
+      <element id="artifact" artifact-name="visualization-admin:war exploded" />
+    </root>
+  </artifact>
+</component>

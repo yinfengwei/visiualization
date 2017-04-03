@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/visualization.iml" filepath="$PROJECT_DIR$/visualization.iml" />
+      <module fileurl="file://$PROJECT_DIR$/visualization-admin/visualization-admin.iml" filepath="$PROJECT_DIR$/visualization-admin/visualization-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/visualization-common/visualization-common.iml" filepath="$PROJECT_DIR$/visualization-common/visualization-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/visualization-mybatis/visualization-mybatis.iml" filepath="$PROJECT_DIR$/visualization-mybatis/visualization-mybatis.iml" />
+    </modules>
+  </component>
+</project>
