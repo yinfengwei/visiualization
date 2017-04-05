@@ -30,7 +30,7 @@
 
     <div id="body" style="text-align: center;">
         <div style="margin: auto">
-            <h1 style="margin-top: 50px;">Circular Parallel Coordinates</h1>
+            <h1 style="margin-top: 50px;">Rundar</h1>
             <p style="font-size: 10px;">使用数据源 : 鸢尾花(iris)数据集</p>
         </div>
 
@@ -62,6 +62,15 @@
                     内外的几何不对称性，它能更好地揭示多维信息之间的某些
                     特殊关系。</p>
 
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">不足</h3>
+            </div>
+            <div class="panel-body">
+                <p> 1、维数增加时,轴比较靠近，辨认维数之间的关系比较难</p>
+                <p> 2、数据量比较大时容易进行混淆跟重叠</p>
             </div>
         </div>
     </div>

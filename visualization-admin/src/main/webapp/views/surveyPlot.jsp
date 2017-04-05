@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>圆形分段技术</title>
+    <title>Survey Plot</title>
     <jsp:include page="${ctx}/common/head.jsp"></jsp:include>
 
 </head>
@@ -9,9 +9,23 @@
 
     <div id="body" style="text-align: center;">
         <div style="margin: auto">
-            <h1 style="margin-top: 50px;">Circle Segment/圆形分段技术</h1>
-            <p style="font-size: 10px;">使用数据源 :葡萄酒数据集 </p>
-
+            <h1 style="margin-top: 50px;">Survey Plot</h1>
+            <p style="font-size: 10px;">使用数据源 : 鸢尾花(iris)数据集 </p>
+            <div class="form-group" style="margin-left: 300px;margin-right: 250px;">
+                <label class="col-sm-3 control-label">排序维度：</label>
+                <div class="col-sm-4">
+                    <select id="type" name="type" class="selectpicker form-control">
+                        <option value="0">species</option>
+                        <option value="1" selected>sepal length</option>
+                        <option value="2">sepal width</option>
+                        <option value="3">petal length</option>
+                        <option value="4">petal width</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="btn btn-info" onclick="redraw()">重新绘制</button>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -24,23 +38,22 @@
             </div>
             <div class="panel-body">
                 <div class="panel-body">
-                    <p>葡萄酒数据集是意大利同一地区生长的葡萄酒的化学分析结果，但来自三个不同的品种。
-                        分析确定了三种葡萄酒中每种葡萄酒中13种成分的数量。</p>
-                    <p>其中13中成分分别为</p>
-                    <p>1、type/葡萄酒类型 2、Alcohol/酒精 3、Malic acid,Ash/苹果酸4、Alcalinity of ash/灰分碱度 5、Magnesium/镁 </p>
-                    <p>6、Total phenols/酚类 7、Flavanoids/黄酮素类 8、Nonflavanoid phenols 9、Proanthocyanins/原花青素 </p>
-                    <p>10、Color intensity/颜色强度 11、Hue/色调 12、OD280/OD315 of diluted wines/稀释酒13、Proline/脯氨酸</p>
+                    鸢尾花(iris)是数据挖掘常用到的一个数据集，包含150种鸢尾花的信息.
+                    每50种取自三个鸢尾花种之一（setosa,versicolour或virginica)。
+                    每个花的特征用下面的5种属性描述
+                    萼片长度(Sepal.Length)、萼片宽度(Sepal.Width)、花瓣长度(Petal.Length)、
+                    花瓣宽度(Petal.Width)、类(Species)。
                 </div>
 
             </div>
         </div>
         <div class="panel panel-success">
             <div class="panel-heading">
-                <h3 class="panel-title">优点</h3>
+                <h3 class="panel-title">说明</h3>
             </div>
             <div class="panel-body">
-                <p>使用一段圆弧代表多维信息的某一属性，属性值使用圆弧的灰度值表示，
-                    将数据按照分类信息由内向外排列，能够发现多维信息集合分类的决定维度</p>
+                <p>借鉴多线图与平行坐标的思想，不同维度使用直线段表示，线段长度与维度值成比例</p>
+                <p>多维数据集按照某些维度进行排序可以发现准确的分类规则</p>
             </div>
         </div>
     </div>
@@ -48,184 +61,235 @@
 </body>
 <script>
 
-    var width = 800, height = 650;
+    var width = 800, height = 550;
+    var types = ['species','sepal length','sepal width','petal length','petal width'];
+    var color = d3.scale.category10();
 
-    //画图
-    function draw() {
+    var speciesMap = {
+        setosa : 1,
+        versicolor : 2,
+        virginica : 3
+    };
 
-        var types = ["type", "Alcohol", "Malic acid", "Ash", "Alcalinity of ash",
-            "Magnesium", "Total phenols", "Flavanoids" ,"Nonflavanoid phenols", "Proanthocyanins",
-            "Color intensity", "Hue", "OD280/OD315 of diluted wines", "Proline"];
+    var species = ["setosa", "versicolor", "virginica"];
+    var data = [], min = {}, max = {};
+    //获取数据
+    d3.csv("${ctx}/visualization-admin/resource/data/iris.csv", function(flowers) {
 
-        var species = ["葡萄酒1", "葡萄酒2", "葡萄酒3"];
-
-        //获取数据
-        d3.csv("${ctx}/visualization-admin/resource/data/wine.csv", function(wines) {
-            var data = {},min = {}, max = {};
+        types.forEach(function (type) {
+            min[type] = 0;
+            max[type] = 0;
+        });
+        flowers.forEach(function (flower) {
+            var temp = {};
 
             types.forEach(function (type) {
-                data[type] = [];
-                wines.forEach(function (wine) {
-                    data[type].push(parseFloat(wine[type]));
-                });
+                if (type == 'species') {
+                    temp[type] = speciesMap[flower[type]];
 
-                min[type] = d3.min(data[type]);
-                max[type] = d3.max(data[type]);
+                } else {
+                    temp[type] = parseFloat(flower[type]);
+                }
 
+                if (temp[type] > max[type]) {
+                    max[type] = temp[type];
+                } else if (temp[type] < min[type] || min[type] == 0) {
+                    min[type] = temp[type];
+                }
+            });
+            data.push(temp);
+        });
+        console.info(data);
+        console.info(min);
+        console.info(max);
+    });
+    //画图
+    function draw(type) {
+
+
+            //按年龄从小到大排序
+            data.sort(function(a,b){
+                return a[type] - b[type];
             });
             console.info(data);
 
 
+//            types.forEach(function (type) {
+//                data[type] = [];
+//                flowers.forEach(function (flower) {
+//                    if (type == 'species') {
+//                        data[type].push(speciesMap[flower[type]]);
+//
+//                    } else {
+//                        data[type].push(parseFloat(flower[type]));
+//                    }
+//                });
+//
+//                min[type] = d3.min(data[type]) - 1;
+//                max[type] = d3.max(data[type]);
+//
+//            });
+//            console.info(data);
+            var svg = d3.select("#body")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
 
-        var svg = d3.select("#body")
-                .append("svg")
-                .attr("width", width)
-                .attr("height", height);
-        //饼图分布
-        var dataset = [];
-        var size = types.length * 2;
+            //根据类型将画布分为几个部分
+            var g = {}, size = 150;
 
-
-        for(var j = 0 ;j < size; j++) {
-            dataset.push(1);
-        }
-
-        //布局
-        var pie = d3.layout.pie();
-
-        //将数据转化为饼图数据
-        var piedata = pie(dataset);
-
-        var arcs = svg.selectAll("g")
-                .data(piedata)
-                .enter()
-                .append("g")
-                .attr("transform","translate("+ (width/2) +","+ ((width/2) - 80) +")");
-
-        var color = d3.scale.category10();
-
-        for (var i = 0; i < 178 ; i++) {
+            var info = {};
 
 
-            var outerRadius = 20 + (i + 1) * 1.5; //外半径
-            var innerRadius = 20 + i * 1.5; //内半径，为0则中间没有空白
-
-            var arc = d3.svg.arc()  //弧生成器
-                    .innerRadius(innerRadius)   //设置内半径
-                    .outerRadius(outerRadius);  //设置外半径
-
-            var times = 0;
-            arcs.append("path")
-                    .attr("fill",d3.rgb("yellow"))
-                    .attr("d",function(d){
-                        return arc(d);   //调用弧生成器，得到路径值
-                    })
-                    .transition()
-                    .duration(2000)
-                    .attr("fill",function(d,k){
-                        //调换前两块
-                        if (k == 1 || (k % 2 == 0 && (k != 0))) {
-                            //计算灰度值，根据每个属性的值大小
-                            var type = types[times];
-
-                            var values = data[type];
-                            times++;
-                            var gray = (values[i] - min[type])/(max[type] - min[type]) * 255;
-//                            console.info(gray);
-                            return d3.rgb(gray,gray,gray);
-                        } else {
-                            if ( i < 59) {
-                                return color(0);
-                            } else if( i < 130) {
-                                return color(1);
-                            } else {
-                                return color(2);
-                            }
-                        }
-
-                    });
 
 
-        }
-            //添加图例
-            var arcEnd = d3.svg.arc()  //弧生成器
-                    .innerRadius((20 + 185 * 1.5))   //设置内半径
-                    .outerRadius((20 + 195 * 1.5));  //设置外半径
+        types.forEach(function (type,index) {
 
-            var typeTimes = 0;
-            arcs.append("text")
-                    .attr("transform",function(d,i){
+                g[type] = svg.append("g")
+                        .attr("width", width / types.length)
+                        .attr("height", height);
 
-//                        //第一个元素（最中间的），只平移不旋转
-//                        if( i == 0 )
-                            return "translate(" + arc.centroid(d) + ")";
-
-//                        //其他的元素，既平移也旋转
-//                        var r = 0;
-////                        if()  // 0 - 180 度以内的
-////                            r = 180 * ((d.x + d.dx / 2 - Math.PI / 2) / Math.PI);
-////                        else  // 180 - 360 度以内的
-////                            r = 180 * ((d.x + d.dx / 2 + Math.PI / 2) / Math.PI);
-//                        //判断是否属于
-//                        if ( i  < size / 2) {
-//                            r = 180 * (i /(size / 2));
-//                        } else {
-//                            r = 180 * ((i - size / 2 )/(size / 2));
-//                        }
-//                        console.info(r);
-//                        //既平移也旋转
-//                        return  "translate(" + arc.centroid(d) + ")" +
-//                                "rotate(" + r + ")";
-
-//                        return "translate(" + arcEnd.centroid(d) + ")";
-                    })
-                    .attr("text-anchor","bottom")
-                    .text(function(d,i){
-                        if (i == 1 || (i % 2 == 0 && (i != 0))) {
-                            var type = types[typeTimes];
-                            typeTimes++;
+                //添加文字
+                var word =  g[type].append("text")
+                        .attr("transform",function(d){
+                            return "translate(" + (index + 0.3) * width / types.length + ",20)";
+                        })
+                        .text(function(d,i){
                             return type;
-                        }
-
-                    });
-
-            // Add a legend.
-            var legend = svg.selectAll("g.legend")
-                    .data(species)
-                    .enter().append("svg:g")
-                    .attr("class", "legend")
-                    .attr("transform", function(d, i) {
-                        return "translate(20," + (i * 20 + 530) + ")";
-                    });
-
-            legend.append("svg:circle")
-                    .attr("fill", function(d,i) {
-
-                        return color(i);
-
-                    })
-                    .attr("r", 3);
-
-            legend.append("svg:text")
-                    .attr("x", 12)
-                    .attr("dy", ".31em")
-                    .text(function(d) {
-
-                        return "species : " + d;
-
-                    });
-
-        });
+                        });
 
 
+
+                info[type] =  g[type].append("text")
+                        .attr("transform",function(d){
+                            return "translate(" + (index + 0.3) * width / types.length + ",450)";
+                        })
+                        .text(function(d,i){
+                            return type;
+                        });
+            });
+        var drag = d3.behavior.drag()
+                .on("drag", dragmove);
+
+        function dragmove(d) {
+            d3.select(this)
+                    .attr("y1", d3.event.y )
+                    .attr("y2", d3.event.y );
+
+            if (d3.event.y > 50) {
+
+                var value = data[Math.floor((d3.event.y - 50) / 2.5)];
+
+
+                types.forEach(function (type,index) {
+                    if(type == "species"){
+                        info[type].text(type + ": "+ species[value[type] - 1]);
+                    } else {
+                        info[type].text(type + ": "+ value[type]);
+                    }
+
+                });
+            }
+        }
+
+        //添加标尺线
+        var hoverLine = svg.append("line")
+                .attr("class","hover-line")
+                .attr("x1",0)
+                .attr("y1",0)
+                .attr("x2",width)
+                .attr("y2",0)
+                .attr("stroke-width",2.5)
+                .attr("stroke", d3.rgb("black"))
+                .call(drag);
+
+
+//                        .attr("transform","translate("+ index * width/types.length+",0)");
+
+//            var values = data;
+
+            for (var i = 0; i < data.length; i++) {
+
+                var values = data[i];
+
+                types.forEach(function (type,index) {
+
+                    var offset = width/types.length * (values[type] - min[type] + 1)/(max[type] - min[type] + 1);
+
+                    //居中显示，1/2 g长度 - 1/2 线长度
+                    var trans = (width/types.length) / 2  - 1/2  * offset;
+
+
+                    //画直线
+                    var line =  g[type].append("line")
+                            .attr("x1",(index + 0.5) * width/types.length)
+                            .attr("y1",50)
+                            .attr("x2",(index + 0.5) * width/types.length)
+                            .attr("y2",50)
+                            .transition()
+                            .duration(2000)
+                            .attr("x1",index * width/types.length)
+                            .attr("y1",50 + 2.5 * i)
+                            .attr("x2",index * width/types.length + offset)
+                            .attr("y2",50 + 2.5 * i)
+                            .attr("stroke-width",2.5)
+                            .attr("transform","translate("+ trans +",0)")
+                            .attr("stroke", d3.rgb("yellow"))
+                            .transition()
+                            .duration(1000)
+                            .attr("stroke",color(values.species));
+
+                });
+
+            }
+
+
+
+
+//            });
+
+
+
+//        });
+
+        // Add a legend.
+        var legend = svg.selectAll("g.legend")
+                .data(species)
+                .enter().append("svg:g")
+                .attr("class", "legend")
+                .attr("transform", function(d, i) {
+                    return "translate(600," + (i * 20 + 470) + ")";
+                });
+
+        legend.append("svg:circle")
+                .attr("fill", function(d,i) {
+
+                    return color(i + 1);
+
+                })
+                .attr("r", 3);
+
+        legend.append("svg:text")
+                .attr("x", 12)
+                .attr("dy", ".31em")
+                .text(function(d) {
+
+                    return "species : " + d;
+
+                });
 
     }
 
 
     $(function () {
 
-        draw();
+        draw(types[$('#type').val()]);
     });
+    function redraw() {
+        console.info(types[$('#type').val()]);
+        d3.select("#body").select("svg").remove();
+        draw(types[$('#type').val()])
+    }
 
 
 

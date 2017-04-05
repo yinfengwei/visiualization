@@ -101,8 +101,16 @@
             </div>
             <div class="panel-body">
                 <p> 1、使用一个二维散点图表达每对维度之间的关系</p>
-                <p> 2、直观显示两个维度间的相关性</p>
-                <p> 3、散点图数目与数据维度平方成正比</p>
+                <p> 2、可直观显示任意两个维度间的相关性</p>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">散点矩阵图不足</h3>
+            </div>
+            <div class="panel-body">
+                <p> 1、维数增加时屏幕显示问题</p>
+                <p> 2、只能发现两个维度之间的关系</p>
             </div>
         </div>
 

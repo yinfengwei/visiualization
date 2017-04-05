@@ -23,94 +23,351 @@
             <%--font-family: sans-serif;--%>
         <%--}--%>
     <%--</style>--%>
+    <style>
+
+        h1,body,html,#container, .section{
+            padding: 0;
+            margin: 0;
+        }
+
+        body{
+            font-family: Arial,"Microsoft YaHei","Hiragino Sans GB",sans-serif;
+        }
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+        h1{
+            font-size: 6em;
+            font-weight: normal;
+        }
+        p{
+            font-size: 2em;
+            margin:0.5em 0 2em 0;
+        }
+
+        #container,.section{
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        #section0{
+            background-image: url(${ctx}/visualization-admin/resource/img/background0.jpg);
+            color: #fff;
+            text-shadow:1px 1px 1px #333;
+        }
+        #section1{
+            color: #fff;
+            text-shadow:1px 1px 1px #333;
+            background-image: url(${ctx}/visualization-admin/resource/img/background.jpg);
+        }
+        #section2{
+            background-image: url(${ctx}/visualization-admin/resource/img/background.jpg);
+            color: #fff;
+            text-shadow:1px 1px 1px #666;
+        }
+        #section3{
+            color: #008283;
+            background-image: url(${ctx}/visualization-admin/resource/img/background.jpg);
+            text-shadow:1px 1px 1px #fff;
+        }
+        #section4{
+            color: #008283;
+            background-image: url(${ctx}/visualization-admin/resource/img/end.jpg);
+            text-shadow:1px 1px 1px #fff;
+        }
+        #pages{
+            position:fixed;
+            right: 10px;
+            top: 50%;
+            list-style: none;
+        }
+        #pages li{
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            margin: 0 0 10px 5px;
+        }
+        #pages li.active{
+            width: 14px;
+            height: 14px;
+            border: 2px solid #FFFE00;
+            background: none;
+            margin-left: 0;
+        }
+        .intro{
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            text-align: center;
+        }
+        .intro span{
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        #section0 .title{
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+            -webkit-animation: sectitle0 1s ease-in-out 100ms forwards;
+            animation: sectitle0 1s ease-in-out 100ms forwards;
+        }
+        #section0 p{
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+            -webkit-animation: sec0 1s ease-in-out 100ms forwards;
+            animation: sec0 1s ease-in-out 100ms forwards;
+        }
+        #section1 .col-sm-5{
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+            -webkit-animation: sectitle0 4s ease-in-out 100ms forwards;
+            animation: sectitle0 4s ease-in-out 100ms forwards;
+        }
+        #section2 .col-sm-5{
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+            -webkit-animation: sectitle0 7s ease-in-out 100ms forwards;
+            animation: sectitle0 7s ease-in-out 100ms forwards;
+        }
+        #section3 .col-sm-3{
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+            -webkit-animation: sectitle0 9s ease-in-out 100ms forwards;
+            animation: sectitle0 9s ease-in-out 100ms forwards;
+        }
+
+        @-webkit-keyframes sectitle0{
+            0%{
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+            }
+            100%{
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+        }
+        @keyframes sectitle0{
+            0%{
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+            }
+            100%{
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+        }
+        @-webkit-keyframes sec0{
+            0%{
+                -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+            }
+            100%{
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+        }
+        @keyframes sec0{
+            0%{
+                -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+            }
+            100%{
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <jsp:include page="${ctx}/common/error.jsp"></jsp:include>
+    <%--<jsp:include page="${ctx}/common/error.jsp"></jsp:include>--%>
     <%--<p>Apple</p>--%>
     <%--<p id="myid">Pear</p>--%>
     <%--<p>Banana</p>--%>
 
 
-    <div class="container">
-        <div style="text-align: center;margin-top: 30px;">
-            <h1 style="margin: auto;">D3.js 高维可视化</h1>
-        </div>
 
-        <table class="table" style="margin-top: 50px;">
-            <tr>
-                <td>
-                    <%--散点图矩阵--%>
+    <div class="container" id="container">
+        <div class="section active" id="section0">
+
+            <div class="intro">
+                <h1 class="title">D3.js 高维可视化</h1>
+                <p>D3.js是一个JavaScript库，它可以通过数据来操作文档。</p>
+                <p>D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。</p>
+            </div>
+        </div>
+        <div class="section" id="section1">
+            <div class="intro">
+                <%--<h1 class="title">Example</h1>--%>
+                <p>简单可视化方法</p>
+
+                <div class="col-sm-3">
                     <div style="text-align: center">
                         <a href="${ctx}/visualization-admin/view?type=scatterPlot">
                             <img src="${ctx}/visualization-admin/resource/img/ScatterPlot.png" style="margin: auto;width: 400px;height: 300px;">
                             <br>
-                            <span style="margin: auto">Scatter Plot</span>
+                             <span style="margin: auto">ScatterPlot</span>
                         </a>
                     </div>
-                </td>
-                <td>
-                    <%--平行坐标图--%>
-                    <div style="text-align: center">
-                        <a href="${ctx}/visualization-admin/view?type=parallelCoordinates">
-                            <img src="${ctx}/visualization-admin/resource/img/ParallelCoordinates.png" style="margin: auto;width: 400px;height: 300px;">
-                            <br>
-                            <span style="margin: auto">Parallel Coordinates</span>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+                    <div class="col-sm-1"></div>
                     <%--多曲线图矩阵--%>
-                    <div style="text-align: center">
-                        <a href="${ctx}/visualization-admin/view?type=mutilLine">
-                            <img src="${ctx}/visualization-admin/resource/img/MutilLine.png" style="margin: auto;width: 400px;height: 300px;">
-                            <br>
-                            <span style="margin: auto">MutilLine</span>
-                        </a>
+                    <div class="col-sm-3">
+                        <div style="text-align: center">
+                            <a href="${ctx}/visualization-admin/view?type=mutilLine">
+                                <img src="${ctx}/visualization-admin/resource/img/MutilLine.png" style="margin: auto;width: 400px;height: 300px;">
+                                <br>
+                                <span style="margin: auto">MutilLine</span>
+                            </a>
+                        </div>
                     </div>
-                </td>
-                <td>
-                    <%--平行坐标图--%>
-                    <div style="text-align: center">
-                        <a href="${ctx}/visualization-admin/view?type=parallelSet">
-                            <img src="${ctx}/visualization-admin/resource/img/ParallelSet.png" style="margin: auto;width: 400px;height: 300px;">
-                            <br>
-                            <span style="margin: auto">Parallel Set</span>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <%--星形图矩阵--%>
-                    <div style="text-align: center">
-                        <a href="${ctx}/visualization-admin/view?type=rundar">
-                            <img src="${ctx}/visualization-admin/resource/img/CircularParallelCoordinates.png" style="margin: auto;width: 400px;height: 300px;">
-                            <br>
-                            <span style="margin: auto">MutilLine</span>
-                        </a>
-                    </div>
-                </td>
-                <td>
+                    <div class="col-sm-1"></div>
                     <%--圆形分段技术--%>
+                    <div class="col-sm-3">
+                        <div style="text-align: center">
+                            <a href="${ctx}/visualization-admin/view?type=circle">
+                                <img src="${ctx}/visualization-admin/resource/img/CircleSegment.png" style="margin: auto;width: 400px;height: 300px;">
+                                <br>
+                                <span style="margin: auto">CircleSegment</span>
+                            </a>
+                        </div>
+                    </div>
+
+            </div>
+
+        </div>
+        <div class="section" id="section2">
+            <div class="intro">
+                <%--<h1 class="title">Example</h1>--%>
+                    <p>坐标轴可视化方法</p>
+                    <%--平行坐标图--%>
+                    <div class="col-sm-3">
+                        <div style="text-align: center">
+                            <a href="${ctx}/visualization-admin/view?type=parallelCoordinates">
+                                <img src="${ctx}/visualization-admin/resource/img/ParallelCoordinates.png" style="margin: auto;width: 400px;height: 300px;">
+                                <br>
+                                <span style="margin: auto">ParallelCoordinates</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-1"></div>
+                    <%--平行坐标图--%>
+                    <div class="col-sm-3">
+                       <div style="text-align: center">
+                          <a href="${ctx}/visualization-admin/view?type=parallelSet">
+                             <img src="${ctx}/visualization-admin/resource/img/ParallelSet.png" style="margin: auto;width: 400px;height: 300px;">
+                             <br>
+                              <span style="margin: auto">ParallelSet</span>
+                          </a>
+                       </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <%--星形图矩阵--%>
+                    <div class="col-sm-3">
+                        <div style="text-align: center">
+                            <a href="${ctx}/visualization-admin/view?type=rundar">
+                                <img src="${ctx}/visualization-admin/resource/img/CircularParallelCoordinates.png" style="margin: auto;width: 400px;height: 300px;">
+                                <br>
+                                <span style="margin: auto">Rundar</span>
+                            </a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="section" id="section3">
+            <div class="intro">
+                <p>其他可视化方法</p>
+                <div class="col-sm-1"></div>
+                <%--surveyPlot--%>
+                <div class="col-sm-5">
                     <div style="text-align: center">
-                        <a href="${ctx}/visualization-admin/view?type=circle">
-                            <img src="${ctx}/visualization-admin/resource/img/CircleSegment.png" style="margin: auto;width: 400px;height: 300px;">
+                        <a href="${ctx}/visualization-admin/view?type=surveyPlot">
+                            <img src="${ctx}/visualization-admin/resource/img/SurveyPlot.png" style="margin: auto;width: 400px;height: 300px;">
                             <br>
-                            <span style="margin: auto">Circle Segment</span>
+                            <span style="margin: auto">SurveyPlot</span>
                         </a>
                     </div>
-                </td>
-            </tr>
+                </div>
+                <div class="col-sm-1"></div>
+                <%--surveyPlot--%>
+                <div class="col-sm-5">
+                    <div style="text-align: center">
+                        <a href="${ctx}/visualization-admin/view?type=chernoffFace">
+                            <img src="${ctx}/visualization-admin/resource/img/Chernoff faces.png" style="margin: auto;width: 400px;height: 300px;">
+                            <br>
+                            <span style="margin: auto">ChernoffFace</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="section" id="section4">
+            <div class="intro">
+                <h1 class="title">THE END</h1>
+                <p>可视化技术仍在发展，不同场景下应选择合适的可视化技术，扬长避短</p>
+            </div>
+        </div>
+
+
+
+        <%--<table class="table" style="margin-top: 50px;">--%>
             <%--<tr>--%>
                 <%--<td>--%>
-                    <%--&lt;%&ndash;surveyPlot&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;散点图矩阵&ndash;%&gt;--%>
                     <%--<div style="text-align: center">--%>
-                        <%--<a href="${ctx}/visualization-admin/view?type=surveyPlot">--%>
-                            <%--<img src="${ctx}/visualization-admin/resource/img/CircleSegment.png" style="margin: auto;width: 400px;height: 300px;">--%>
+                        <%--<a href="${ctx}/visualization-admin/view?type=scatterPlot">--%>
+                            <%--<img src="${ctx}/visualization-admin/resource/img/ScatterPlot.png" style="margin: auto;width: 400px;height: 300px;">--%>
                             <%--<br>--%>
-                            <%--<span style="margin: auto">surveyPlot</span>--%>
+                            <%--<span style="margin: auto">Scatter Plot</span>--%>
+                        <%--</a>--%>
+                    <%--</div>--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                    <%--&lt;%&ndash;平行坐标图&ndash;%&gt;--%>
+                    <%--<div style="text-align: center">--%>
+                        <%--<a href="${ctx}/visualization-admin/view?type=parallelCoordinates">--%>
+                            <%--<img src="${ctx}/visualization-admin/resource/img/ParallelCoordinates.png" style="margin: auto;width: 400px;height: 300px;">--%>
+                            <%--<br>--%>
+                            <%--<span style="margin: auto">Parallel Coordinates</span>--%>
+                        <%--</a>--%>
+                    <%--</div>--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--&lt;%&ndash;多曲线图矩阵&ndash;%&gt;--%>
+                    <%--<div style="text-align: center">--%>
+                        <%--<a href="${ctx}/visualization-admin/view?type=mutilLine">--%>
+                            <%--<img src="${ctx}/visualization-admin/resource/img/MutilLine.png" style="margin: auto;width: 400px;height: 300px;">--%>
+                            <%--<br>--%>
+                            <%--<span style="margin: auto">MutilLine</span>--%>
+                        <%--</a>--%>
+                    <%--</div>--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                    <%--&lt;%&ndash;平行坐标图&ndash;%&gt;--%>
+                    <%--<div style="text-align: center">--%>
+                        <%--<a href="${ctx}/visualization-admin/view?type=parallelSet">--%>
+                            <%--<img src="${ctx}/visualization-admin/resource/img/ParallelSet.png" style="margin: auto;width: 400px;height: 300px;">--%>
+                            <%--<br>--%>
+                            <%--<span style="margin: auto">Parallel Set</span>--%>
+                        <%--</a>--%>
+                    <%--</div>--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--&lt;%&ndash;星形图矩阵&ndash;%&gt;--%>
+                    <%--<div style="text-align: center">--%>
+                        <%--<a href="${ctx}/visualization-admin/view?type=rundar">--%>
+                            <%--<img src="${ctx}/visualization-admin/resource/img/CircularParallelCoordinates.png" style="margin: auto;width: 400px;height: 300px;">--%>
+                            <%--<br>--%>
+                            <%--<span style="margin: auto">MutilLine</span>--%>
                         <%--</a>--%>
                     <%--</div>--%>
                 <%--</td>--%>
@@ -125,443 +382,140 @@
                     <%--</div>--%>
                 <%--</td>--%>
             <%--</tr>--%>
-        </table>
+            <%--<tr>--%>
+                <%--<td>--%>
+                    <%--&lt;%&ndash;surveyPlot&ndash;%&gt;--%>
+                    <%--<div style="text-align: center">--%>
+                        <%--<a href="${ctx}/visualization-admin/view?type=surveyPlot">--%>
+                            <%--<img src="${ctx}/visualization-admin/resource/img/SurveyPlot.png" style="margin: auto;width: 400px;height: 300px;">--%>
+                            <%--<br>--%>
+                            <%--<span style="margin: auto">surveyPlot</span>--%>
+                        <%--</a>--%>
+                    <%--</div>--%>
+                <%--</td>--%>
+                <%--&lt;%&ndash;<td>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;&lt;%&ndash;圆形分段技术&ndash;%&gt;&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<div style="text-align: center">&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<a href="${ctx}/visualization-admin/view?type=circle">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<img src="${ctx}/visualization-admin/resource/img/CircleSegment.png" style="margin: auto;width: 400px;height: 300px;">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<br>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<span style="margin: auto">Circle Segment</span>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;</a>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</td>&ndash;%&gt;--%>
+            <%--</tr>--%>
+        <%--</table>--%>
     </div>
 
 </body>
 <script>
-//    var str = "China";
-//
-//    var body = d3.select("body");
-//    var p = body.selectAll("p");
-//
-//    //绑定单个数据
-////    //绑定数据到DOM
-////    p.datum(str);
-////
-////    //d代表绑定的数据
-////    p.text(function (d, i) {
-////        return "第" + i + "个元素绑定的数据是" + d;
-////    })
-//
-////    //绑定数组
-////    var dataset = ["I like dogs", "I like cats", "I like snake"];
-////    p.data(dataset).text(function (d,i) {
-////        return d;
-////    })
-//
-//    //添加元素
-//    body.append("p").text("append p element");
-//
-//    //在特定元素前添加
-//    body.insert("p","#myid").text("insert p element");
-//
-//    //删除元素
-//    var pr = body.select("#myid");
-//    pr.remove();
+    $(function(){
+        $("#container").switchPage({
+            'loop' : true,
+            'keyboard' : true,
+            'duration' : 1000,//每次动画执行的时间
+//            'direction' : 'horizontal',//滑动的方向 horizontal,vertical,
 
-//    //画布，普通画布
-//    var width = 300;        //宽度
-//    var height = 300;       //高度
-//
-//    var svg = d3.select("body")
+        });
+    });
+
+
+//    var svg3 = d3.select(".container")
 //            .append("svg")
-//            .attr("width",width)
-//            .attr("height", height);
+//            .attr("width", 800)
+//            .attr("height", 600);
 //
-//    var dataset = [250, 210, 170, 130, 90];         //数据（宽度）
+//    //数据
+//    var nodes = [ { name: "scatterPlot" }, { name: "Parallel Coordinates" },
+//                    { name: "rundar" }, { name: "mutilLine" },
+//                    { name: "parallelSet" }, { name: "CircleSegment" },
+//                    { name: "surveyPlot" } ];
 //
-//    var rectHeight = 25;        //矩形所占的像素高度
+//    var edges = [ { source : 0 , target: 1 } , { source : 0 , target: 3 } ,
+//        { source : 1 , target: 4 } , { source : 1 , target: 4 } ,
+//        { source : 2 , target: 5 } , { source : 3 , target: 6 } ];
 //
-//    svg.selectAll("rect")
-//            .data(dataset)
+//    //布局（数据转换）
+//    var force = d3.layout.force()
+//            .nodes(nodes)       //指定节点数组
+//            .links(edges)       //指定连线数组
+//            .size([800, 600])     //指定作用域范围
+//            .linkDistance(250)      //指定连线长度
+//            .charge([-500]);        //相互之间的作用力
+//
+//    force.start();          //开始作用
+//
+//    console.log(nodes);
+//    console.log(edges);
+//
+//    //绘制
+//    //添加连线
+//    var svg_edges = svg3.selectAll("line")
+//            .data(edges)
 //            .enter()
-//            .append("rect")      //绑定数据
-//            .attr("x",20)
-//            .attr("y",function (d, i) {
-//                return i * rectHeight;
-//            })
-//            .attr("width",function (d) {
-//                return d;
-//            })
-//            .attr("height", rectHeight-2)
-//            .attr("fill","steelblue");
-
-    //比例尺
-//    var dataset = [1.2, 2.3, 0.9, 1.5, 3.3];
+//            .append("line")
+//            .style("stroke", "#ccc")
+//            .style("stroke-width",5);
 //
-//    var min = d3.min(dataset);
-//    var max = d3.max(dataset);
+//     color = d3.scale.category20();
 //
-//    var linear = d3.scale.linear()    //返回线性比例尺
-//            .domain([min, max])        //设置比例尺的定义域，也就原始数据
-//            .range([0, 300]);           //设置值域，就是映射数据
-//
-//    alert(linear(0.9));
-//    alert(linear(2.3));
-//    alert(linear(2.5));
-
-//    //序数比例尺 -- 一一对应计算，不是定义域内变量则默认为第一个即0对应的color
-//    var index = [0, 1, 2, 3, 4];
-//    var color = ["red", "blue", "green", "yellow", "black"];
-//
-//    var ordinal = d3.scale.ordinal()
-//            .domain(index)
-//            .range(color);
-//
-//    alert(ordinal(0));
-//    alert(ordinal(2));
-//    alert(ordinal(6));
-
-
-//    //比例尺与柱形图结合、坐标轴
-//    var width = 300;        //宽度
-//    var height = 300;       //高度
-//
-//    var svg = d3.select("body")
-//            .append("svg")
-//            .attr("width",width)
-//            .attr("height", height);
-//
-//    var dataset = [2.5, 2.1, 1.7, 1.3, 0.9];
-//
-//    //比例尺
-//    var linear = d3.scale.linear()
-//            .domain([0, d3.max(dataset)])
-//            .range([0, 250]);
-//
-//    //坐标轴
-//    var axis = d3.svg.axis()            //生成坐标轴
-//            .scale(linear)      //指定比例尺
-//            .orient("bottom")   //刻度方向
-//            .ticks(7);           //制定刻度的数量
-//
-//    //将坐标轴添加到画布中
-//    svg.append("g")
-//            .attr("class","axis")
-//            .attr("transform", "translate(20, 130)")
-//            .call(axis);
-//
-//    var rectHeight = 25;
-//
-//    svg.selectAll("rect")
-//            .data(dataset)
+//    //添加节点
+//    var svg_nodes = svg3.selectAll("circle")
+//            .data(nodes)
 //            .enter()
-//            .append("rect")
-//            .attr("x", 20)
-//            .attr("y", function (d, i) {
-//                return i * rectHeight;
+//            .append("circle")
+//            .attr("r", 50)
+//            .style("fill", function (d, i) {
+//                return color(i);
 //
 //            })
-//            .attr("width", function (d) {
-//                return linear(d);
+//            .call(force.drag);          //使节点能够拖动
 //
-//            })
-//            .attr("height", rectHeight - 2)
-//            .attr("fill", "steelblue");
-
-    //完整的柱形图
-    //1 .添加画布
-//    var width = 400;
-//    var height = 400;
-//
-//    //2. 在body 中添加一个SVG画布
-//    var svg = d3.select("body")
-//            .append("svg")
-//            .attr("width", width)
-//            .attr("height", height);
-//
-//    //画布周边的空白
-//    var padding = {left:30, right:30, top:20, bottom:20};
-//
-//    //3. 定义数据和比例尺
-//    var dataset = [10, 20, 30, 40, 33, 24, 12, 5];
-//
-//    //x轴比例尺
-//    var xScale = d3.scale.ordinal()     //序数比例尺
-//            .domain(d3.range(dataset.length))
-//            .rangeRoundBands([0, width - padding.left - padding.right]);
-//
-//    //y轴比例尺
-//    var yScale = d3.scale.linear()      //线性比例尺
-//            .domain([0,d3.max(dataset)])
-//            .range([height - padding.top - padding.bottom, 0]);
-//
-//    //4. 定义坐标轴
-//    var xAxis = d3.svg.axis()
-//            .scale(xScale)
-//            .orient("bottom");
-//
-//    //定义y轴
-//    var yAxis = d3.svg.axis()
-//            .scale(yScale)
-//            .orient("left");
-//
-//    //5 添加矩形与文字元素
-//    //矩形之间的空白
-//    var rectPadding = 4;
-//
-//    //添加矩形元素
-//    var rects = svg.selectAll(".MyRect")
-//            .data(dataset)
-//            .enter()
-//            .append("rect")
-//            .attr("class", "MyRect")
-//            .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
-//            .attr("x", function (d, i) {
-//                return xScale(i) + rectPadding/2;
-//
-//            })
-//            .attr("y", function (d) {
-//                return yScale(d);
-//
-//            })
-//            .attr("width", xScale.rangeBand() - rectPadding)
-//            .attr("height", function (d) {
-//                return height - padding.top - padding.bottom - yScale(d);
-//
-//            })
-//            .attr("fill", "steelblue")
-//            .on("mouseover",function (d, i) {
-//                d3.select(this)
-//                        .attr("fill", "yellow");
-//            })
-//            .on("mouseout", function (d, i) {
-//                d3.select(this)
-//                        .transition()
-//                        .duration(500)
-//                        .attr("fill", "steelblue");
-//
-//            })
-//            .transition()
-//            .duration(1000)
-//            .delay(500)
-//            .attr("fill", "red");
-//
-//    //文字元素
-//    var texts = svg.selectAll(".MyText")
-//            .data(dataset)
+//    //添加节点描述
+//    var svg_text = svg3.selectAll("text")
+//            .data(nodes)
 //            .enter()
 //            .append("text")
-//            .attr("class", "MyText")
-//            .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
-//            .attr("x", function (d, i) {
-//                return xScale(i) + rectPadding/2 - 5;
-//
-//            })
-//            .attr("y", function (d) {
-//                var min = yScale.domain()[0];
-//                return yScale(min) ;
-//
-//            })
-//            .transition()
-//            .delay(function (d, i) {
-//                return 200 * i;
-//            })
-//            .duration(2000)
-//            .ease("bounce")
-//            .attr("y", function (d) {
-//                return yScale(d) ;
-//
-//            })
-//            .attr("dx", function () {
-//                return (xScale.rangeBand() - rectPadding)/2;
-//
-//            })
-//            .attr("dy", function (d) {
-//                return 20;
-//
-//            })
+//            .style("fill","black")
+//            .attr("dx", 20)
+//            .attr("dy", 8)
 //            .text(function (d) {
-//                return d;
-//
+//                return d.name;
 //            });
 //
-//    //6. 添加x轴
-//    svg.append("g")
-//            .attr("class", "axis")
-//            .attr("transform", "translate(" + padding.left + "," + (height - padding.bottom) + ")")
-//            .call(xAxis);
-//    svg.append("g")
-//            .attr("class", "axis")
-//            .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
-//            .call(yAxis);
+//    force.on("tick",function () {
+//        //对于每一个时间间隔更新
+//        svg_edges.attr("x1",function (d) {
+//            return d.source.x;
+//        })
+//                .attr("y1",function (d) {
+//                    return d.source.y;
+//                })
+//                .attr("x2",function (d) {
+//                    return d.target.x;
+//                })
+//                .attr("y2",function (d) {
+//                    return d.target.y;
+//                });
 //
-//    //动态效果
-//    var svg1 = d3.select("body")
-//            .append("svg")
-//            .attr("height",400)
-//            .attr("width", 400);
+//        //更新节点坐标
+//        svg_nodes.attr("cx",function (d) {
+//            return d.x;
+//        })
+//                .attr("cy",function (d) {
+//                    return d.y;
+//                });
 //
-//    //动态效果
-//    var circle = svg1.append("circle")
-//            .attr("cx", 200)
-//            .attr("cy", 200)
-//            .attr("r", 100)
-//            .attr("fill", "green");
+//        //更新文字坐标
+//        svg_text.attr("x",function (d) {
+//            return d.x;
 //
-//    circle.transition()
-//            .duration(1000)
-//            .attr("cx", 300)
-//            .attr("fill", "red")
-//            .attr("r", 25);
+//        })
+//                .attr("y", function (d) {
+//                    return d.y;
+//                });
 //
-//    circle.on("click", function () {
-//        alert(d3.event);
 //    })
-//
-//
-//    //饼图
-//
-//    var svg2 = d3.select("body")
-//            .append("svg")
-//            .attr("height",400)
-//            .attr("width", 400);
-//
-//    var dataset1 = [30, 10, 43, 55, 13];
-//
-//    //布局
-//    var pie = d3.layout.pie();
-//
-//    //数据转化
-//    var piedata = pie(dataset);
-//
-//    //弧生成器
-//    var outerRadius = 150;      //外半径
-//    var innerRadius = 0;        //内半径
-//
-//    //弧生成器
-//    var arc = d3.svg.arc()      //弧生成器
-//            .innerRadius(innerRadius)
-//            .outerRadius(outerRadius);
-//
-//    //添加图形元素
-//    var arcs = svg2.selectAll("g")
-//            .data(piedata)
-//            .enter()
-//            .append("g")
-//            .attr("transform", "translate(" + (400/2) + "," + (400/2) + ")");
-//
-//    //颜色
-//    var color = d3.scale.category10();
-//
-//    //调用弧生成器，添加路径
-//    arcs.append("path")
-//            .attr("fill", function (d, i) {
-//                return color(i);
-//            })
-//            .attr("d", function (d) {
-//                return arc(d);
-//            });
-//
-//    //添加数据显示
-//    arcs.append("text")
-//            .attr("transform",function (d) {
-//                return "translate(" + arc.centroid(d) + ")";
-//            })
-//            .attr("text-anchor", "middle")
-//            .text(function (d) {
-//                return d.data;
-//            });
-//
-//
-    //力导向图
-    var svg3 = d3.select(".container")
-            .append("svg")
-            .attr("width", 800)
-            .attr("height", 600);
-
-    //数据
-    var nodes = [ { name: "scatterPlot" }, { name: "Parallel Coordinates" },
-                    { name: "rundar" }, { name: "mutilLine" },
-                    { name: "parallelSet" }, { name: "青岛" },
-                    { name: "天津" } ];
-
-    var edges = [ { source : 0 , target: 1 } , { source : 0 , target: 2 } ,
-        { source : 0 , target: 3 } , { source : 1 , target: 4 } ,
-        { source : 1 , target: 5 } , { source : 1 , target: 6 } ];
-
-    //布局（数据转换）
-    var force = d3.layout.force()
-            .nodes(nodes)       //指定节点数组
-            .links(edges)       //指定连线数组
-            .size([800, 600])     //指定作用域范围
-            .linkDistance(250)      //指定连线长度
-            .charge([-500]);        //相互之间的作用力
-
-    force.start();          //开始作用
-
-    console.log(nodes);
-    console.log(edges);
-
-    //绘制
-    //添加连线
-    var svg_edges = svg3.selectAll("line")
-            .data(edges)
-            .enter()
-            .append("line")
-            .style("stroke", "#ccc")
-            .style("stroke-width",2);
-
-     color = d3.scale.category20();
-
-    //添加节点
-    var svg_nodes = svg3.selectAll("circle")
-            .data(nodes)
-            .enter()
-            .append("circle")
-            .attr("r", 20)
-            .style("fill", function (d, i) {
-                return color(i);
-
-            })
-            .call(force.drag);          //使节点能够拖动
-
-    //添加节点描述
-    var svg_text = svg3.selectAll("text")
-            .data(nodes)
-            .enter()
-            .append("text")
-            .style("fill","black")
-            .attr("dx", 20)
-            .attr("dy", 8)
-            .text(function (d) {
-                return d.name;
-            });
-
-    force.on("tick",function () {
-        //对于每一个时间间隔更新
-        svg_edges.attr("x1",function (d) {
-            return d.source.x;
-        })
-                .attr("y1",function (d) {
-                    return d.source.y;
-                })
-                .attr("x2",function (d) {
-                    return d.target.x;
-                })
-                .attr("y2",function (d) {
-                    return d.target.y;
-                });
-
-        //更新节点坐标
-        svg_nodes.attr("cx",function (d) {
-            return d.x;
-        })
-                .attr("cy",function (d) {
-                    return d.y;
-                });
-
-        //更新文字坐标
-        svg_text.attr("x",function (d) {
-            return d.x;
-
-        })
-                .attr("y", function (d) {
-                    return d.y;
-                });
-
-    })
 
 
     //弦图

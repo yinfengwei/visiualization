@@ -155,29 +155,7 @@
             var typeTimes = 0;
             arcs.append("text")
                     .attr("transform",function(d,i){
-
-//                        //第一个元素（最中间的），只平移不旋转
-//                        if( i == 0 )
                             return "translate(" + arc.centroid(d) + ")";
-
-//                        //其他的元素，既平移也旋转
-//                        var r = 0;
-////                        if()  // 0 - 180 度以内的
-////                            r = 180 * ((d.x + d.dx / 2 - Math.PI / 2) / Math.PI);
-////                        else  // 180 - 360 度以内的
-////                            r = 180 * ((d.x + d.dx / 2 + Math.PI / 2) / Math.PI);
-//                        //判断是否属于
-//                        if ( i  < size / 2) {
-//                            r = 180 * (i /(size / 2));
-//                        } else {
-//                            r = 180 * ((i - size / 2 )/(size / 2));
-//                        }
-//                        console.info(r);
-//                        //既平移也旋转
-//                        return  "translate(" + arc.centroid(d) + ")" +
-//                                "rotate(" + r + ")";
-
-//                        return "translate(" + arcEnd.centroid(d) + ")";
                     })
                     .attr("text-anchor","bottom")
                     .text(function(d,i){

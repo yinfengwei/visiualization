@@ -93,7 +93,7 @@
                     </select>
                 </div>
                 <div>
-                    <button class="btn" onclick="redraw()">重新绘制</button>
+                    <button class="btn btn-info" onclick="redraw()">重新绘制</button>
                 </div>
              </div>
         </div>
@@ -117,11 +117,21 @@
             <h3 class="panel-title">优点</h3>
         </div>
         <div class="panel-body">
-            <p> 1、D3.js 可以直观显示维度相关性</p>
+            <p> 1、表达数据关系直观易于理解</p>
             <p> 2、可以拖动鼠标进行数据选择，分析数据之间的相关性</p>
             <p> 3、根据数据分析的需求可以对显示数据源维度进行筛选分析</p>
         </div>
     </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">不足</h3>
+            </div>
+            <div class="panel-body">
+                <p> 1、维数依赖于屏幕水平宽度</p>
+                <p> 2、维数增加时,垂直轴比较靠近，辨认维数关系比较难</p>
+                <p> 3、数据量比较大时容易进行混淆跟重叠</p>
+            </div>
+        </div>
 
 
 </div>

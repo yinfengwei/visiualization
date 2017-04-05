@@ -27,6 +27,8 @@
 <script src="${ctx}/resource/js/d3.min.js"></script>
 <script src="${ctx}/resource/js/d3.parsets.js"></script>
 <script src="${ctx}/resource/js/circularHeatChart.js"></script>
+<script src="${ctx}/resource/js/pageswitch.js"></script>
+<script src="${ctx}/resource/js/chernoff.js"></script>
 
 
 

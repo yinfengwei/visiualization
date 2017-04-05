@@ -29,7 +29,7 @@
                     </select>
                 </div>
                 <div>
-                    <button class="btn" onclick="redraw()">重新绘制</button>
+                    <button class="btn btn-primary" onclick="redraw()">重新绘制</button>
                 </div>
              </div>
         </div>
@@ -55,6 +55,16 @@
                 <p> 1、适合离散型高维数据的分析</p>
                 <p> 2、D3.js 可以进行选择某一个维度上的特定离散变量进行数据直观显示</p>
                 <p> 3、根据数据分析的需求可以对显示数据源维度进行筛选分析</p>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">不足</h3>
+            </div>
+            <div class="panel-body">
+                <p> 1、维数依赖于屏幕垂直高度</p>
+                <p> 2、维数增加时,垂直轴比较靠近，辨认维数关系比较难</p>
+                <p> 3、数据量比较大时容易进行混淆跟重叠</p>
             </div>
         </div>
     </div>
