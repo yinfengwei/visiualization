@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>工程</title>
+    <title>平行集</title>
     <jsp:include page="${ctx}/common/head.jsp"></jsp:include>
     <style>
         .axis path,

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>高维数据可视化</title>
+    <title>散点矩阵</title>
     <jsp:include page="${ctx}/common/head.jsp"></jsp:include>
 
     <style type="text/css">

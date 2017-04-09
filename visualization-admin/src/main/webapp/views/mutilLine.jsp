@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>工程</title>
+    <title>多线图</title>
     <jsp:include page="${ctx}/common/head.jsp"></jsp:include>
     <style>
         /*.axis path,*/
@@ -258,10 +258,10 @@
                 .attr("transform","translate("+padding.left+","+(height-padding.top)+")")
                 .call(xAxis);
 
-        svg.append("g")
-                .attr("class","axis")
-                .attr("transform","translate("+padding.left+","+padding.top+")")
-                .call(yAxis);
+//        svg.append("line")
+//                .attr("class","axis")
+//                .attr("transform","translate("+padding.left+","+padding.top+")")
+//                //.call(yAxis);
 
 //        // Add a legend.
         var legend = svg.selectAll("g.legend")
@@ -269,7 +269,7 @@
                 .enter().append("svg:g")
                 .attr("class", "legend")
                 .attr("transform", function(d, i) {
-                    return "translate(80," + (n - i + 0.5) * (height-padding.bottom-padding.top)/n + ")";
+                    return "translate(0," + (n - i + 0.5) * (height-padding.bottom-padding.top)/n + ")";
                 });
 
         legend.append("svg:text")
