@@ -23,14 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="visualization-admin" />
-        <module name="visualization-common" />
-        <module name="visualization-mybatis" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="visualization" target="1.6" />
-      <module name="visualization-admin" target="1.6" />
-      <module name="visualization-common" target="1.6" />
+      <module name="visualization" target="1.5" />
+      <module name="visualization-admin" target="1.5" />
+      <module name="visualization-common" target="1.5" />
       <module name="visualization-mybatis" target="1.6" />
     </bytecodeTargetLevel>
   </component>
