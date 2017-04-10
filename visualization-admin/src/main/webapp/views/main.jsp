@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>D3.js 高维数据可视化</title>
+    <title>D3.js 数据可视化</title>
     <jsp:include page="${ctx}/common/head.jsp"></jsp:include>
     <%--<style>--%>
         <%--.axis path,--%>
@@ -194,7 +194,7 @@
         <div class="section active" id="section0">
 
             <div class="intro">
-                <h1 class="title">D3.js 高维可视化</h1>
+                <h1 class="title">D3.js 数据可视化</h1>
                 <p>D3.js是一个JavaScript库，它可以通过数据来操作文档。</p>
                 <p>D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。</p>
             </div>

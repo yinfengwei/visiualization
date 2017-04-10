@@ -47,7 +47,7 @@
                 <p>nosew : marital 取值范围 [0, 1],noseh : default 取值范围 [0, 1],eyew : balance 取值范围 [0 ,1]
                 <p>eyeh : housing 取值范围 [0, 1],brow : loan 取值范围 [-1, 1]</p>
 
-                <p>适用于维度不多且某些维度有特殊含义的高维数据分析</p>
+                <p>适用于维度不多且某些维度有特殊含义的数据分析</p>
             </div>
         </div>
     </div>
